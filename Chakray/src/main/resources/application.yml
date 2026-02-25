@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: users-api
+
+    messages:
+      basename: messages
+
+  # Configuración de Kafka
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: users-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  # Validación (mensajes personalizados)
+  messages:
+    basename: messages
+
+# Configuración de logging
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.chakray.users: DEBUG
+
+# Swagger/OpenAPI
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    #operationsSorter: method
+    #tagsSorter: alpha
